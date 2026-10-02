@@ -92,8 +92,8 @@
 
     <!-- Script to Fetch from Supabase -->
     <script>
-        const SUPABASE_URL = 'https://cvzhscdjummcakoarqeo.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_9kq764Wj68cY3kRvcB_UTA_S1f03';
+        const SUPABASE_URL = 'https://cvzhscdjummcakoarqeo.supabase.co';[cite: 5]
+        const SUPABASE_ANON_KEY = 'sb_publishable_9kq764Wj68cY3kRvcB_UTA_S1fO3vn2';[cite: 9]
         
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -110,30 +110,26 @@
             }
 
             if (data) {
-                document.getElementById('siteTitle').innerText = data.title || 'Digital Biodata';
-                document.getElementById('siteSubtitle').innerText = data.subtitle || '';
-                document.getElementById('profileName').innerText = data.name || '--';
-                document.getElementById('profileProfession').innerText = data.profession || '--';
-                if (data.photo) {
-                    document.getElementById('profileImg').src = data.photo;
-                }
-                document.getElementById('valDob').innerText = data.dob || '--';
-                document.getElementById('valTob').innerText = data.tob || '--';
-                document.getElementById('valPob').innerText = data.pob || '--';
-                document.getElementById('valHeight').innerText = data.height || '--';
-                document.getElementById('valCaste').innerText = data.caste || '--';
-                document.getElementById('valBlood').innerText = data.blood || '--';
-                document.getElementById('valEdu').innerText = data.edu || '--';
-                document.getElementById('valJob').innerText = data.job || '--';
-                document.getElementById('valIncome').innerText = data.income || '--';
-                document.getElementById('valFather').innerText = data.father || '--';
-                document.getElementById('valMother').innerText = data.mother || '--';
-                document.getElementById('valSiblings').innerText = data.siblings || '--';
-                document.getElementById('valPhone').innerText = data.phone || '--';
-                if (data.phone) {
-                    document.getElementById('callBtn').href = "tel:" + data.phone.replace(/\s+/g, '');
-                    document.getElementById('waBtn').href = "https://wa.me/" + data.phone.replace(/[^0-9]/g, '');
-                }
+                document.getElementById('siteTitle').innerText = data.title;
+                document.getElementById('siteSubtitle').innerText = data.subtitle;
+                document.getElementById('profileName').innerText = data.name;
+                document.getElementById('profileProfession').innerText = data.profession;
+                document.getElementById('profileImg').src = data.photo;
+                document.getElementById('valDob').innerText = data.dob;
+                document.getElementById('valTob').innerText = data.tob;
+                document.getElementById('valPob').innerText = data.pob;
+                document.getElementById('valHeight').innerText = data.height;
+                document.getElementById('valCaste').innerText = data.caste;
+                document.getElementById('valBlood').innerText = data.blood;
+                document.getElementById('valEdu').innerText = data.edu;
+                document.getElementById('valJob').innerText = data.job;
+                document.getElementById('valIncome').innerText = data.income;
+                document.getElementById('valFather').innerText = data.father;
+                document.getElementById('valMother').innerText = data.mother;
+                document.getElementById('valSiblings').innerText = data.siblings;
+                document.getElementById('valPhone').innerText = data.phone;
+                document.getElementById('callBtn').href = "tel:" + data.phone.replace(/\s+/g, '');
+                document.getElementById('waBtn').href = "https://wa.me/" + data.phone.replace(/[^0-9]/g, '');
             }
         }
 
