@@ -1,1 +1,139 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Digital Biodata</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Supabase JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-100 min-h-screen font-sans text-gray-800 pb-12">
 
+    <div class="max-w-2xl mx-auto my-10 bg-white rounded-2xl shadow-2xl overflow-hidden border border-purple-100">
+        <!-- Header / Banner Section -->
+        <div class="bg-gradient-to-r from-purple-600 to-indigo-600 p-8 text-center text-white">
+            <h1 id="siteTitle" class="text-3xl font-bold tracking-wide">Digital Biodata</h1>
+            <p id="siteSubtitle" class="text-purple-200 text-sm mt-1">Marriage / Professional Profile</p>
+        </div>
+
+        <!-- Profile Photo & Name -->
+        <div class="text-center px-6 pt-6">
+            <div class="inline-block p-1 bg-white rounded-full shadow-lg -mt-16">
+                <img id="profileImg" src="" alt="Profile" class="w-32 h-32 rounded-full object-cover">
+            </div>
+            <h2 id="profileName" class="text-2xl font-bold text-gray-900 mt-3">--</h2>
+            <p id="profileProfession" class="text-purple-600 font-medium">--</p>
+        </div>
+
+        <!-- Details Section -->
+        <div class="p-8 space-y-6">
+            <!-- Personal Information -->
+            <div class="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <h3 class="text-lg font-semibold text-purple-700 mb-4 flex items-center">
+                    <i class="fa-solid fa-user mr-2"></i> Personal Information
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                    <div><span class="font-semibold text-gray-600">Date of Birth:</span> <span id="valDob">--</span></div>
+                    <div><span class="font-semibold text-gray-600">Time of Birth:</span> <span id="valTob">--</span></div>
+                    <div><span class="font-semibold text-gray-600">Place of Birth:</span> <span id="valPob">--</span></div>
+                    <div><span class="font-semibold text-gray-600">Height:</span> <span id="valHeight">--</span></div>
+                    <div><span class="font-semibold text-gray-600">Religion / Caste:</span> <span id="valCaste">--</span></div>
+                    <div><span class="font-semibold text-gray-600">Blood Group:</span> <span id="valBlood">--</span></div>
+                </div>
+            </div>
+
+            <!-- Education & Career -->
+            <div class="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <h3 class="text-lg font-semibold text-purple-700 mb-4 flex items-center">
+                    <i class="fa-solid fa-graduation-cap mr-2"></i> Education & Career
+                </h3>
+                <div class="space-y-3 text-sm">
+                    <div><span class="font-semibold text-gray-600">Qualification:</span> <span id="valEdu">--</span></div>
+                    <div><span class="font-semibold text-gray-600">Profession:</span> <span id="valJob">--</span></div>
+                    <div><span class="font-semibold text-gray-600">Annual Income:</span> <span id="valIncome">--</span></div>
+                </div>
+            </div>
+
+            <!-- Family Details -->
+            <div class="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                <h3 class="text-lg font-semibold text-purple-700 mb-4 flex items-center">
+                    <i class="fa-solid fa-users mr-2"></i> Family Details
+                </h3>
+                <div class="space-y-3 text-sm">
+                    <div><span class="font-semibold text-gray-600">Father's Name:</span> <span id="valFather">--</span></div>
+                    <div><span class="font-semibold text-gray-600">Mother's Name:</span> <span id="valMother">--</span></div>
+                    <div><span class="font-semibold text-gray-600">Siblings:</span> <span id="valSiblings">--</span></div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="bg-purple-50 rounded-xl p-5 border border-purple-100 text-center">
+                <h3 class="text-lg font-semibold text-purple-700 mb-2 flex items-center justify-center">
+                    <i class="fa-solid fa-phone mr-2"></i> Contact Details
+                </h3>
+                <p id="valPhone" class="text-gray-700 font-medium">--</p>
+                <div class="mt-4 flex justify-center gap-4">
+                    <a id="callBtn" href="#" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition shadow-md">
+                        <i class="fa-solid fa-phone-volume mr-1"></i> Call Now
+                    </a>
+                    <a id="waBtn" href="#" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition shadow-md">
+                        <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-100 text-center py-4 text-xs text-gray-500 border-t border-gray-200">
+            Designed with ❤️ for Premium Biodata
+        </div>
+    </div>
+
+    <!-- Script to Fetch from Supabase -->
+    <script>
+        const SUPABASE_URL = 'https://cvzhscdjummcakoarqeo.supabase.co';[cite: 5]
+        const SUPABASE_ANON_KEY = 'sb_publishable_9kq764Wj68cY3kRvcB_UTA_S1fO3vn2';[cite: 9]
+        
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        async function fetchBiodata() {
+            const { data, error } = await supabaseClient
+                .from('biodata')
+                .select('*')
+                .eq('id', 1)
+                .single();
+
+            if (error) {
+                console.error('Error fetching data:', error);
+                return;
+            }
+
+            if (data) {
+                document.getElementById('siteTitle').innerText = data.title;
+                document.getElementById('siteSubtitle').innerText = data.subtitle;
+                document.getElementById('profileName').innerText = data.name;
+                document.getElementById('profileProfession').innerText = data.profession;
+                document.getElementById('profileImg').src = data.photo;
+                document.getElementById('valDob').innerText = data.dob;
+                document.getElementById('valTob').innerText = data.tob;
+                document.getElementById('valPob').innerText = data.pob;
+                document.getElementById('valHeight').innerText = data.height;
+                document.getElementById('valCaste').innerText = data.caste;
+                document.getElementById('valBlood').innerText = data.blood;
+                document.getElementById('valEdu').innerText = data.edu;
+                document.getElementById('valJob').innerText = data.job;
+                document.getElementById('valIncome').innerText = data.income;
+                document.getElementById('valFather').innerText = data.father;
+                document.getElementById('valMother').innerText = data.mother;
+                document.getElementById('valSiblings').innerText = data.siblings;
+                document.getElementById('valPhone').innerText = data.phone;
+                document.getElementById('callBtn').href = "tel:" + data.phone.replace(/\s+/g, '');
+                document.getElementById('waBtn').href = "https://wa.me/" + data.phone.replace(/[^0-9]/g, '');
+            }
+        }
+
+        fetchBiodata();
+    </script>
+</body>
+</html>
