@@ -76,8 +76,8 @@
                     <input type="text" id="inpProfession" class="w-full px-3 py-2 border rounded-lg text-sm">
                 </div>
                 <div class="sm:col-span-2">
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">Profile Photo Image URL</label>
-                    <input type="text" id="inpPhoto" class="w-full px-3 py-2 border rounded-lg text-sm">
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Select Profile Photo</label>
+                    <input type="file" id="inpPhotoFile" accept="image/*" class="w-full px-3 py-1.5 border rounded-lg text-sm file:mr-4 file:py-1 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100">
                 </div>
             </div>
 
@@ -118,9 +118,9 @@
     <script>
         const defaultData = {
             title: "Digital Biodata", subtitle: "Marriage / Professional Profile",
-            name: "Rahul Sharma", profession: "Software Engineer",
+            name: "Amrit Raja", profession: "Software Engineer",
             photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
-            dob: "15 August 1998", tob: "10:30 AM", pob: "New Delhi",
+            dob: "10 June 2013", tob: "10:30 AM", pob: "New Delhi",
             height: "5 feet 10 inches", caste: "Hindu / Brahmin", blood: "B+",
             edu: "B.Tech in Computer Science", job: "Software Engineer at MNC", income: "12 LPA",
             father: "Mr. Rajesh Sharma (Business)", mother: "Mrs. Sunita Sharma (Homemaker)", siblings: "1 Younger Sister (Studying)",
@@ -133,7 +133,6 @@
             document.getElementById('inpSubtitle').value = data.subtitle;
             document.getElementById('inpName').value = data.name;
             document.getElementById('inpProfession').value = data.profession;
-            document.getElementById('inpPhoto').value = data.photo;
             document.getElementById('inpDob').value = data.dob;
             document.getElementById('inpTob').value = data.tob;
             document.getElementById('inpPob').value = data.pob;
@@ -164,29 +163,44 @@
         }
 
         function saveChanges() {
-            const updatedData = {
-                title: document.getElementById('inpTitle').value,
-                subtitle: document.getElementById('inpSubtitle').value,
-                name: document.getElementById('inpName').value,
-                profession: document.getElementById('inpProfession').value,
-                photo: document.getElementById('inpPhoto').value,
-                dob: document.getElementById('inpDob').value,
-                tob: document.getElementById('inpTob').value,
-                pob: document.getElementById('inpPob').value,
-                height: document.getElementById('inpHeight').value,
-                caste: document.getElementById('inpCaste').value,
-                blood: document.getElementById('inpBlood').value,
-                edu: document.getElementById('inpEdu').value,
-                job: document.getElementById('inpJob').value,
-                income: document.getElementById('inpIncome').value,
-                father: document.getElementById('inpFather').value,
-                mother: document.getElementById('inpMother').value,
-                siblings: document.getElementById('inpSiblings').value,
-                phone: document.getElementById('inpPhone').value
-            };
+            const fileInput = document.getElementById('inpPhotoFile');
+            const existingData = JSON.parse(localStorage.getItem('biodataContent')) || defaultData;
 
-            localStorage.setItem('biodataContent', JSON.stringify(updatedData));
-            alert('Biodata Updated Successfully! View site to check changes.');
+            function saveDataToStorage(photoUrl) {
+                const updatedData = {
+                    title: document.getElementById('inpTitle').value,
+                    subtitle: document.getElementById('inpSubtitle').value,
+                    name: document.getElementById('inpName').value,
+                    profession: document.getElementById('inpProfession').value,
+                    photo: photoUrl || existingData.photo,
+                    dob: document.getElementById('inpDob').value,
+                    tob: document.getElementById('inpTob').value,
+                    pob: document.getElementById('inpPob').value,
+                    height: document.getElementById('inpHeight').value,
+                    caste: document.getElementById('inpCaste').value,
+                    blood: document.getElementById('inpBlood').value,
+                    edu: document.getElementById('inpEdu').value,
+                    job: document.getElementById('inpJob').value,
+                    income: document.getElementById('inpIncome').value,
+                    father: document.getElementById('inpFather').value,
+                    mother: document.getElementById('inpMother').value,
+                    siblings: document.getElementById('inpSiblings').value,
+                    phone: document.getElementById('inpPhone').value
+                };
+
+                localStorage.setItem('biodataContent', JSON.stringify(updatedData));
+                alert('Biodata Updated Successfully! View site to check changes.');
+            }
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    saveDataToStorage(e.target.result);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                saveDataToStorage(existingData.photo);
+            }
         }
 
         function handleLogout() {
