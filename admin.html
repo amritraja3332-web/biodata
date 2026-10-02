@@ -6,6 +6,8 @@
     <title>Admin Dashboard - Update Biodata</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Supabase JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="bg-gray-900 min-h-screen flex items-center justify-center font-sans py-10">
 
@@ -43,7 +45,7 @@
         <div class="flex justify-between items-center border-b pb-4 mb-6">
             <div>
                 <h2 class="text-2xl font-bold text-gray-900">Admin Dashboard</h2>
-                <p class="text-xs text-gray-500">Edit and update index.html contents</p>
+                <p class="text-xs text-gray-500">Supabase Cloud Database Connected</p>
             </div>
             <div class="flex gap-3">
                 <a href="index.html" target="_blank" class="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-200 transition">
@@ -108,44 +110,47 @@
 
             <div class="pt-4">
                 <button onclick="saveChanges()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2.5 rounded-lg font-medium transition text-sm shadow-md">
-                    <i class="fa-solid fa-floppy-disk mr-1"></i> Save All Changes
+                    <i class="fa-solid fa-floppy-disk mr-1"></i> Save to Supabase Cloud
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Scripting for Login & Data Management -->
+    <!-- Scripting for Supabase -->
     <script>
-        const defaultData = {
-            title: "Digital Biodata", subtitle: "Marriage / Professional Profile",
-            name: "Amrit Raja", profession: "Software Engineer",
-            photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
-            dob: "10 June 2013", tob: "10:30 AM", pob: "New Delhi",
-            height: "5 feet 10 inches", caste: "Hindu / Brahmin", blood: "B+",
-            edu: "B.Tech in Computer Science", job: "Software Engineer at MNC", income: "12 LPA",
-            father: "Mr. Rajesh Sharma (Business)", mother: "Mrs. Sunita Sharma (Homemaker)", siblings: "1 Younger Sister (Studying)",
-            phone: "+91 98765 43210"
-        };
+        const SUPABASE_URL = 'https://cvzhscdjummcakoarqeo.supabase.co';[cite: 5]
+        const SUPABASE_ANON_KEY = 'sb_publishable_9kq764Wj68cY3kRvcB_UTA_S1f03';[cite: 9]
+        
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        let currentPhotoUrl = "";
 
-        function loadFormValues() {
-            const data = JSON.parse(localStorage.getItem('biodataContent')) || defaultData;
-            document.getElementById('inpTitle').value = data.title;
-            document.getElementById('inpSubtitle').value = data.subtitle;
-            document.getElementById('inpName').value = data.name;
-            document.getElementById('inpProfession').value = data.profession;
-            document.getElementById('inpDob').value = data.dob;
-            document.getElementById('inpTob').value = data.tob;
-            document.getElementById('inpPob').value = data.pob;
-            document.getElementById('inpHeight').value = data.height;
-            document.getElementById('inpCaste').value = data.caste;
-            document.getElementById('inpBlood').value = data.blood;
-            document.getElementById('inpEdu').value = data.edu;
-            document.getElementById('inpJob').value = data.job;
-            document.getElementById('inpIncome').value = data.income;
-            document.getElementById('inpFather').value = data.father;
-            document.getElementById('inpMother').value = data.mother;
-            document.getElementById('inpSiblings').value = data.siblings;
-            document.getElementById('inpPhone').value = data.phone;
+        async function loadFormValues() {
+            const { data, error } = await supabaseClient
+                .from('biodata')
+                .select('*')
+                .eq('id', 1)
+                .single();
+
+            if (data) {
+                document.getElementById('inpTitle').value = data.title;
+                document.getElementById('inpSubtitle').value = data.subtitle;
+                document.getElementById('inpName').value = data.name;
+                document.getElementById('inpProfession').value = data.profession;
+                currentPhotoUrl = data.photo;
+                document.getElementById('inpDob').value = data.dob;
+                document.getElementById('inpTob').value = data.tob;
+                document.getElementById('inpPob').value = data.pob;
+                document.getElementById('inpHeight').value = data.height;
+                document.getElementById('inpCaste').value = data.caste;
+                document.getElementById('inpBlood').value = data.blood;
+                document.getElementById('inpEdu').value = data.edu;
+                document.getElementById('inpJob').value = data.job;
+                document.getElementById('inpIncome').value = data.income;
+                document.getElementById('inpFather').value = data.father;
+                document.getElementById('inpMother').value = data.mother;
+                document.getElementById('inpSiblings').value = data.siblings;
+                document.getElementById('inpPhone').value = data.phone;
+            }
         }
 
         function handleLogin() {
@@ -162,17 +167,16 @@
             }
         }
 
-        function saveChanges() {
+        async function saveChanges() {
             const fileInput = document.getElementById('inpPhotoFile');
-            const existingData = JSON.parse(localStorage.getItem('biodataContent')) || defaultData;
 
-            function saveDataToStorage(photoUrl) {
+            async function updateDatabase(photoUrl) {
                 const updatedData = {
                     title: document.getElementById('inpTitle').value,
                     subtitle: document.getElementById('inpSubtitle').value,
                     name: document.getElementById('inpName').value,
                     profession: document.getElementById('inpProfession').value,
-                    photo: photoUrl || existingData.photo,
+                    photo: photoUrl || currentPhotoUrl,
                     dob: document.getElementById('inpDob').value,
                     tob: document.getElementById('inpTob').value,
                     pob: document.getElementById('inpPob').value,
@@ -188,18 +192,27 @@
                     phone: document.getElementById('inpPhone').value
                 };
 
-                localStorage.setItem('biodataContent', JSON.stringify(updatedData));
-                alert('Biodata Updated Successfully! View site to check changes.');
+                const { error } = await supabaseClient
+                    .from('biodata')
+                    .update(updatedData)
+                    .eq('id', 1);
+
+                if (error) {
+                    console.error(error);
+                    alert('Error updating data in Supabase.');
+                } else {
+                    alert('Data successfully saved to Supabase! Ab kisi bhi phone se website kholne par yahi data dikhega.');
+                }
             }
 
             if (fileInput.files && fileInput.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    saveDataToStorage(e.target.result);
+                    updateDatabase(e.target.result);
                 };
                 reader.readAsDataURL(fileInput.files[0]);
             } else {
-                saveDataToStorage(existingData.photo);
+                updateDatabase(currentPhotoUrl);
             }
         }
 
