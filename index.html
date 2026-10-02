@@ -4,31 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Digital Biodata</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-100 min-t-screen font-sans text-gray-800">
+<body class="bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-100 min-h-screen font-sans text-gray-800 pb-12">
 
     <div class="max-w-2xl mx-auto my-10 bg-white rounded-2xl shadow-2xl overflow-hidden border border-purple-100">
-        <!-- Header / Banner Section -->
-        <div class="bg-gradient-to-r from-purple-600 to-indigo-600 p-6 text-center text-white relative">
-            <h1 class="text-3xl font-bold tracking-wide">Digital Biodata</h1>
-            <p class="text-purple-200 text-sm mt-1">Marriage / Professional Profile</p>
-            <div class="absolute top-4 right-4">
-                <a href="admin.html" class="text-xs bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-full backdrop-blur-sm transition">
-                    <i class="fa-solid fa-lock mr-1"></i> Admin Login
-                </a>
-            </div>
+        <!-- Header / Banner Section (Admin Button Removed) -->
+        <div class="bg-gradient-to-r from-purple-600 to-indigo-600 p-8 text-center text-white">
+            <h1 id="siteTitle" class="text-3xl font-bold tracking-wide">Digital Biodata</h1>
+            <p id="siteSubtitle" class="text-purple-200 text-sm mt-1">Marriage / Professional Profile</p>
         </div>
 
-        <!-- Profile Photo & Name -->
-        <div class="text-center -mt-16 px-6">
-            <div class="inline-block p-1 bg-white rounded-full shadow-lg">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Profile" class="w-32 h-32 rounded-full object-cover">
+        <!-- Profile Photo & Name (Shifted down to display completely) -->
+        <div class="text-center px-6 pt-6">
+            <div class="inline-block p-1 bg-white rounded-full shadow-lg -mt-16">
+                <img id="profileImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Profile" class="w-32 h-32 rounded-full object-cover">
             </div>
-            <h2 class="text-2xl font-bold text-gray-900 mt-3">Rahul Sharma</h2>
-            <p class="text-purple-600 font-medium">Software Engineer</p>
+            <h2 id="profileName" class="text-2xl font-bold text-gray-900 mt-3">Rahul Sharma</h2>
+            <p id="profileProfession" class="text-purple-600 font-medium">Software Engineer</p>
         </div>
 
         <!-- Details Section -->
@@ -39,12 +33,12 @@
                     <i class="fa-solid fa-user mr-2"></i> Personal Information
                 </h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                    <div><span class="font-semibold text-gray-600">Date of Birth:</span> 15 August 1998</div>
-                    <div><span class="font-semibold text-gray-600">Time of Birth:</span> 10:30 AM</div>
-                    <div><span class="font-semibold text-gray-600">Place of Birth:</span> New Delhi</div>
-                    <div><span class="font-semibold text-gray-600">Height:</span> 5 feet 10 inches</div>
-                    <div><span class="font-semibold text-gray-600">Religion / Caste:</span> Hindu / Brahmin</div>
-                    <div><span class="font-semibold text-gray-600">Blood Group:</span> B+</div>
+                    <div><span class="font-semibold text-gray-600">Date of Birth:</span> <span id="valDob">15 August 1998</span></div>
+                    <div><span class="font-semibold text-gray-600">Time of Birth:</span> <span id="valTob">10:30 AM</span></div>
+                    <div><span class="font-semibold text-gray-600">Place of Birth:</span> <span id="valPob">New Delhi</span></div>
+                    <div><span class="font-semibold text-gray-600">Height:</span> <span id="valHeight">5 feet 10 inches</span></div>
+                    <div><span class="font-semibold text-gray-600">Religion / Caste:</span> <span id="valCaste">Hindu / Brahmin</span></div>
+                    <div><span class="font-semibold text-gray-600">Blood Group:</span> <span id="valBlood">B+</span></div>
                 </div>
             </div>
 
@@ -54,9 +48,9 @@
                     <i class="fa-solid fa-graduation-cap mr-2"></i> Education & Career
                 </h3>
                 <div class="space-y-3 text-sm">
-                    <div><span class="font-semibold text-gray-600">Qualification:</span> B.Tech in Computer Science</div>
-                    <div><span class="font-semibold text-gray-600">Profession:</span> Software Engineer at MNC</div>
-                    <div><span class="font-semibold text-gray-600">Annual Income:</span> 12 LPA</div>
+                    <div><span class="font-semibold text-gray-600">Qualification:</span> <span id="valEdu">B.Tech in Computer Science</span></div>
+                    <div><span class="font-semibold text-gray-600">Profession:</span> <span id="valJob">Software Engineer at MNC</span></div>
+                    <div><span class="font-semibold text-gray-600">Annual Income:</span> <span id="valIncome">12 LPA</span></div>
                 </div>
             </div>
 
@@ -66,9 +60,9 @@
                     <i class="fa-solid fa-users mr-2"></i> Family Details
                 </h3>
                 <div class="space-y-3 text-sm">
-                    <div><span class="font-semibold text-gray-600">Father's Name:</span> Mr. Rajesh Sharma (Business)</div>
-                    <div><span class="font-semibold text-gray-600">Mother's Name:</span> Mrs. Sunita Sharma (Homemaker)</div>
-                    <div><span class="font-semibold text-gray-600">Siblings:</span> 1 Younger Sister (Studying)</div>
+                    <div><span class="font-semibold text-gray-600">Father's Name:</span> <span id="valFather">Mr. Rajesh Sharma (Business)</span></div>
+                    <div><span class="font-semibold text-gray-600">Mother's Name:</span> <span id="valMother">Mrs. Sunita Sharma (Homemaker)</span></div>
+                    <div><span class="font-semibold text-gray-600">Siblings:</span> <span id="valSiblings">1 Younger Sister (Studying)</span></div>
                 </div>
             </div>
 
@@ -77,12 +71,12 @@
                 <h3 class="text-lg font-semibold text-purple-700 mb-2 flex items-center justify-center">
                     <i class="fa-solid fa-phone mr-2"></i> Contact Details
                 </h3>
-                <p class="text-gray-700 font-medium">+91 98765 43210</p>
+                <p id="valPhone" class="text-gray-700 font-medium">+91 98765 43210</p>
                 <div class="mt-4 flex justify-center gap-4">
-                    <a href="tel:+919876543210" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition shadow-md">
+                    <a id="callBtn" href="tel:+919876543210" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition shadow-md">
                         <i class="fa-solid fa-phone-volume mr-1"></i> Call Now
                     </a>
-                    <a href="https://wa.me/919876543210" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition shadow-md">
+                    <a id="waBtn" href="https://wa.me/919876543210" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition shadow-md">
                         <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp
                     </a>
                 </div>
@@ -95,5 +89,41 @@
         </div>
     </div>
 
+    <!-- Script to Load Data from localStorage -->
+    <script>
+        const defaultData = {
+            title: "Digital Biodata", subtitle: "Marriage / Professional Profile",
+            name: "Rahul Sharma", profession: "Software Engineer",
+            photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+            dob: "15 August 1998", tob: "10:30 AM", pob: "New Delhi",
+            height: "5 feet 10 inches", caste: "Hindu / Brahmin", blood: "B+",
+            edu: "B.Tech in Computer Science", job: "Software Engineer at MNC", income: "12 LPA",
+            father: "Mr. Rajesh Sharma (Business)", mother: "Mrs. Sunita Sharma (Homemaker)", siblings: "1 Younger Sister (Studying)",
+            phone: "+91 98765 43210"
+        };
+
+        const data = JSON.parse(localStorage.getItem('biodataContent')) || defaultData;
+
+        document.getElementById('siteTitle').innerText = data.title;
+        document.getElementById('siteSubtitle').innerText = data.subtitle;
+        document.getElementById('profileName').innerText = data.name;
+        document.getElementById('profileProfession').innerText = data.profession;
+        document.getElementById('profileImg').src = data.photo;
+        document.getElementById('valDob').innerText = data.dob;
+        document.getElementById('valTob').innerText = data.tob;
+        document.getElementById('valPob').innerText = data.pob;
+        document.getElementById('valHeight').innerText = data.height;
+        document.getElementById('valCaste').innerText = data.caste;
+        document.getElementById('valBlood').innerText = data.blood;
+        document.getElementById('valEdu').innerText = data.edu;
+        document.getElementById('valJob').innerText = data.job;
+        document.getElementById('valIncome').innerText = data.income;
+        document.getElementById('valFather').innerText = data.father;
+        document.getElementById('valMother').innerText = data.mother;
+        document.getElementById('valSiblings').innerText = data.siblings;
+        document.getElementById('valPhone').innerText = data.phone;
+        document.getElementById('callBtn').href = "tel:" + data.phone.replace(/\s+/g, '');
+        document.getElementById('waBtn').href = "https://wa.me/" + data.phone.replace(/[^0-9]/g, '');
+    </script>
 </body>
 </html>
