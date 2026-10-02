@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Login</title>
+    <title>Admin Dashboard - Update Biodata</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gray-900 min-h-screen flex items-center justify-center font-sans">
+<body class="bg-gray-900 min-h-screen flex items-center justify-center font-sans py-10">
 
     <!-- Login Box -->
     <div id="loginSection" class="bg-white p-8 rounded-2xl shadow-2xl w-96 max-w-full mx-4">
@@ -16,7 +16,7 @@
                 <i class="fa-solid fa-lock"></i>
             </div>
             <h2 class="text-2xl font-bold text-gray-900">Admin Login</h2>
-            <p class="text-xs text-gray-500 mt-1">Enter your credentials to access dashboard</p>
+            <p class="text-xs text-gray-500 mt-1">Username & Password: a raja</p>
         </div>
 
         <div class="space-y-4">
@@ -38,12 +38,12 @@
         </div>
     </div>
 
-    <!-- Dashboard Panel (Hidden by default) -->
-    <div id="dashboardSection" class="hidden bg-white p-8 rounded-2xl shadow-2xl w-full max-w-4xl mx-4">
+    <!-- Dashboard Panel & Editor Form (Hidden by default) -->
+    <div id="dashboardSection" class="hidden bg-white p-8 rounded-2xl shadow-2xl w-full max-w-3xl mx-4 my-auto">
         <div class="flex justify-between items-center border-b pb-4 mb-6">
             <div>
                 <h2 class="text-2xl font-bold text-gray-900">Admin Dashboard</h2>
-                <p class="text-xs text-gray-500">Welcome back, A Raja</p>
+                <p class="text-xs text-gray-500">Edit and update index.html contents</p>
             </div>
             <div class="flex gap-3">
                 <a href="index.html" target="_blank" class="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-200 transition">
@@ -55,32 +55,100 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
-            <div class="bg-purple-50 p-5 rounded-xl border border-purple-100">
-                <p class="text-xs text-purple-600 font-semibold uppercase">Total Visitors</p>
-                <h3 class="text-2xl font-bold text-gray-900 mt-1">1,245</h3>
+        <!-- Edit Form -->
+        <div class="space-y-4 max-h-[70vh] overflow-y-auto pr-2">
+            <h3 class="text-md font-semibold text-purple-700 border-b pb-2">Main Heading & Photo</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Website Title</label>
+                    <input type="text" id="inpTitle" class="w-full px-3 py-2 border rounded-lg text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Subtitle</label>
+                    <input type="text" id="inpSubtitle" class="w-full px-3 py-2 border rounded-lg text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Full Name</label>
+                    <input type="text" id="inpName" class="w-full px-3 py-2 border rounded-lg text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Profession / Title</label>
+                    <input type="text" id="inpProfession" class="w-full px-3 py-2 border rounded-lg text-sm">
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Profile Photo Image URL</label>
+                    <input type="text" id="inpPhoto" class="w-full px-3 py-2 border rounded-lg text-sm">
+                </div>
             </div>
-            <div class="bg-indigo-50 p-5 rounded-xl border border-indigo-100">
-                <p class="text-xs text-indigo-600 font-semibold uppercase">Profile Views</p>
-                <h3 class="text-2xl font-bold text-gray-900 mt-1">3,890</h3>
-            </div>
-            <div class="bg-green-50 p-5 rounded-xl border border-green-100">
-                <p class="text-xs text-green-600 font-semibold uppercase">Inquiries</p>
-                <h3 class="text-2xl font-bold text-gray-900 mt-1">42</h3>
-            </div>
-        </div>
 
-        <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-800 mb-3">Quick Control Panel</h3>
-            <p class="text-sm text-gray-600 mb-4">Aap yahan se apni website ka data update ya manage kar sakte hain.</p>
-            <button onclick="alert('Profile Updated Successfully!')" class="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition">
-                Save Changes
-            </button>
+            <h3 class="text-md font-semibold text-purple-700 border-b pb-2 pt-2">Personal Information</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Date of Birth</label><input type="text" id="inpDob" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Time of Birth</label><input type="text" id="inpTob" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Place of Birth</label><input type="text" id="inpPob" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Height</label><input type="text" id="inpHeight" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Religion / Caste</label><input type="text" id="inpCaste" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Blood Group</label><input type="text" id="inpBlood" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+            </div>
+
+            <h3 class="text-md font-semibold text-purple-700 border-b pb-2 pt-2">Education & Career</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Qualification</label><input type="text" id="inpEdu" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Job / Profession</label><input type="text" id="inpJob" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Annual Income</label><input type="text" id="inpIncome" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+            </div>
+
+            <h3 class="text-md font-semibold text-purple-700 border-b pb-2 pt-2">Family & Contact Details</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Father's Name</label><input type="text" id="inpFather" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Mother's Name</label><input type="text" id="inpMother" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Siblings</label><input type="text" id="inpSiblings" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Phone Number</label><input type="text" id="inpPhone" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+            </div>
+
+            <div class="pt-4">
+                <button onclick="saveChanges()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2.5 rounded-lg font-medium transition text-sm shadow-md">
+                    <i class="fa-solid fa-floppy-disk mr-1"></i> Save All Changes
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- Login Script -->
+    <!-- Scripting for Login & Data Management -->
     <script>
+        const defaultData = {
+            title: "Digital Biodata", subtitle: "Marriage / Professional Profile",
+            name: "Rahul Sharma", profession: "Software Engineer",
+            photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+            dob: "15 August 1998", tob: "10:30 AM", pob: "New Delhi",
+            height: "5 feet 10 inches", caste: "Hindu / Brahmin", blood: "B+",
+            edu: "B.Tech in Computer Science", job: "Software Engineer at MNC", income: "12 LPA",
+            father: "Mr. Rajesh Sharma (Business)", mother: "Mrs. Sunita Sharma (Homemaker)", siblings: "1 Younger Sister (Studying)",
+            phone: "+91 98765 43210"
+        };
+
+        function loadFormValues() {
+            const data = JSON.parse(localStorage.getItem('biodataContent')) || defaultData;
+            document.getElementById('inpTitle').value = data.title;
+            document.getElementById('inpSubtitle').value = data.subtitle;
+            document.getElementById('inpName').value = data.name;
+            document.getElementById('inpProfession').value = data.profession;
+            document.getElementById('inpPhoto').value = data.photo;
+            document.getElementById('inpDob').value = data.dob;
+            document.getElementById('inpTob').value = data.tob;
+            document.getElementById('inpPob').value = data.pob;
+            document.getElementById('inpHeight').value = data.height;
+            document.getElementById('inpCaste').value = data.caste;
+            document.getElementById('inpBlood').value = data.blood;
+            document.getElementById('inpEdu').value = data.edu;
+            document.getElementById('inpJob').value = data.job;
+            document.getElementById('inpIncome').value = data.income;
+            document.getElementById('inpFather').value = data.father;
+            document.getElementById('inpMother').value = data.mother;
+            document.getElementById('inpSiblings').value = data.siblings;
+            document.getElementById('inpPhone').value = data.phone;
+        }
+
         function handleLogin() {
             const user = document.getElementById('username').value.trim();
             const pass = document.getElementById('password').value.trim();
@@ -89,9 +157,36 @@
             if (user === 'a raja' && pass === 'a raja') {
                 document.getElementById('loginSection').classList.add('hidden');
                 document.getElementById('dashboardSection').classList.remove('hidden');
+                loadFormValues();
             } else {
                 errorMsg.classList.remove('hidden');
             }
+        }
+
+        function saveChanges() {
+            const updatedData = {
+                title: document.getElementById('inpTitle').value,
+                subtitle: document.getElementById('inpSubtitle').value,
+                name: document.getElementById('inpName').value,
+                profession: document.getElementById('inpProfession').value,
+                photo: document.getElementById('inpPhoto').value,
+                dob: document.getElementById('inpDob').value,
+                tob: document.getElementById('inpTob').value,
+                pob: document.getElementById('inpPob').value,
+                height: document.getElementById('inpHeight').value,
+                caste: document.getElementById('inpCaste').value,
+                blood: document.getElementById('inpBlood').value,
+                edu: document.getElementById('inpEdu').value,
+                job: document.getElementById('inpJob').value,
+                income: document.getElementById('inpIncome').value,
+                father: document.getElementById('inpFather').value,
+                mother: document.getElementById('inpMother').value,
+                siblings: document.getElementById('inpSiblings').value,
+                phone: document.getElementById('inpPhone').value
+            };
+
+            localStorage.setItem('biodataContent', JSON.stringify(updatedData));
+            alert('Biodata Updated Successfully! View site to check changes.');
         }
 
         function handleLogout() {
@@ -102,6 +197,5 @@
             document.getElementById('errorMsg').classList.add('hidden');
         }
     </script>
-
 </body>
 </html>
