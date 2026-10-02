@@ -105,13 +105,14 @@
                 <div><label class="block text-xs font-semibold text-gray-600 mb-1">Father's Name</label><input type="text" id="inpFather" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
                 <div><label class="block text-xs font-semibold text-gray-600 mb-1">Mother's Name</label><input type="text" id="inpMother" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
                 <div><label class="block text-xs font-semibold text-gray-600 mb-1">Siblings</label><input type="text" id="inpSiblings" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
-                <div><label class="block text-xs font-semibold text-gray-600 mail mb-1">Phone Number</label><input type="text" id="inpPhone" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Phone Number</label><input type="text" id="inpPhone" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
             </div>
 
             <div class="pt-4">
-                <button onclick="saveChanges()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2.5 rounded-lg font-medium transition text-sm shadow-md">
+                <button id="saveBtn" onclick="saveChanges()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2.5 rounded-lg font-medium transition text-sm shadow-md">
                     <i class="fa-solid fa-floppy-disk mr-1"></i> Save to Supabase Cloud
                 </button>
+                <p id="saveStatus" class="text-center text-xs mt-2 font-semibold"></p>
             </div>
         </div>
     </div>
@@ -169,6 +170,10 @@
         }
 
         async function saveChanges() {
+            const statusEl = document.getElementById('saveStatus');
+            statusEl.innerText = "Saving data to cloud...";
+            statusEl.className = "text-center text-xs mt-2 font-semibold text-blue-600";
+
             const fileInput = document.getElementById('inpPhotoFile');
 
             async function updateDatabase(photoUrl) {
@@ -199,10 +204,12 @@
                     .eq('id', 1);
 
                 if (error) {
-                    console.error(error);
-                    alert('Error updating data in Supabase.');
+                    console.error("Supabase Error:", error);
+                    statusEl.innerText = "Error: " + error.message;
+                    statusEl.className = "text-center text-xs mt-2 font-semibold text-red-600";
                 } else {
-                    alert('Data successfully saved to Supabase!');
+                    statusEl.innerText = "Successfully saved to Supabase Cloud!";
+                    statusEl.className = "text-center text-xs mt-2 font-semibold text-green-600";
                 }
             }
 
@@ -223,6 +230,7 @@
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
             document.getElementById('errorMsg').classList.add('hidden');
+            document.getElementById('saveStatus').innerText = '';
         }
     </script>
 </body>
