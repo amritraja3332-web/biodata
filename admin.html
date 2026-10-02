@@ -105,7 +105,7 @@
                 <div><label class="block text-xs font-semibold text-gray-600 mb-1">Father's Name</label><input type="text" id="inpFather" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
                 <div><label class="block text-xs font-semibold text-gray-600 mb-1">Mother's Name</label><input type="text" id="inpMother" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
                 <div><label class="block text-xs font-semibold text-gray-600 mb-1">Siblings</label><input type="text" id="inpSiblings" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
-                <div><label class="block text-xs font-semibold text-gray-600 mb-1">Phone Number</label><input type="text" id="inpPhone" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-semibold text-gray-600 mail mb-1">Phone Number</label><input type="text" id="inpPhone" class="w-full px-3 py-2 border rounded-lg text-sm"></div>
             </div>
 
             <div class="pt-4">
@@ -118,8 +118,8 @@
 
     <!-- Scripting for Supabase -->
     <script>
-        const SUPABASE_URL = 'https://cvzhscdjummcakoarqeo.supabase.co';[cite: 5]
-        const SUPABASE_ANON_KEY = 'sb_publishable_9kq764Wj68cY3kRvcB_UTA_S1fO3vn2';[cite: 9]
+        const SUPABASE_URL = 'https://cvzhscdjummcakoarqeo.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_9kq764Wj68cY3kRvcB_UTA_S1fO3vn2';
         
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         let currentPhotoUrl = "";
@@ -132,33 +132,34 @@
                 .single();
 
             if (data) {
-                document.getElementById('inpTitle').value = data.title;
-                document.getElementById('inpSubtitle').value = data.subtitle;
-                document.getElementById('inpName').value = data.name;
-                document.getElementById('inpProfession').value = data.profession;
-                currentPhotoUrl = data.photo;
-                document.getElementById('inpDob').value = data.dob;
-                document.getElementById('inpTob').value = data.tob;
-                document.getElementById('inpPob').value = data.pob;
-                document.getElementById('inpHeight').value = data.height;
-                document.getElementById('inpCaste').value = data.caste;
-                document.getElementById('inpBlood').value = data.blood;
-                document.getElementById('inpEdu').value = data.edu;
-                document.getElementById('inpJob').value = data.job;
-                document.getElementById('inpIncome').value = data.income;
-                document.getElementById('inpFather').value = data.father;
-                document.getElementById('inpMother').value = data.mother;
-                document.getElementById('inpSiblings').value = data.siblings;
-                document.getElementById('inpPhone').value = data.phone;
+                document.getElementById('inpTitle').value = data.title || '';
+                document.getElementById('inpSubtitle').value = data.subtitle || '';
+                document.getElementById('inpName').value = data.name || '';
+                document.getElementById('inpProfession').value = data.profession || '';
+                currentPhotoUrl = data.photo || '';
+                document.getElementById('inpDob').value = data.dob || '';
+                document.getElementById('inpTob').value = data.tob || '';
+                document.getElementById('inpPob').value = data.pob || '';
+                document.getElementById('inpHeight').value = data.height || '';
+                document.getElementById('inpCaste').value = data.caste || '';
+                document.getElementById('inpBlood').value = data.blood || '';
+                document.getElementById('inpEdu').value = data.edu || '';
+                document.getElementById('inpJob').value = data.job || '';
+                document.getElementById('inpIncome').value = data.income || '';
+                document.getElementById('inpFather').value = data.father || '';
+                document.getElementById('inpMother').value = data.mother || '';
+                document.getElementById('inpSiblings').value = data.siblings || '';
+                document.getElementById('inpPhone').value = data.phone || '';
             }
         }
 
         function handleLogin() {
-            const user = document.getElementById('username').value.trim();
+            const user = document.getElementById('username').value.trim().toLowerCase();
             const pass = document.getElementById('password').value.trim();
             const errorMsg = document.getElementById('errorMsg');
 
             if (user === 'a raja' && pass === 'a raja') {
+                errorMsg.classList.add('hidden');
                 document.getElementById('loginSection').classList.add('hidden');
                 document.getElementById('dashboardSection').classList.remove('hidden');
                 loadFormValues();
@@ -201,7 +202,7 @@
                     console.error(error);
                     alert('Error updating data in Supabase.');
                 } else {
-                    alert('Data successfully saved to Supabase! Ab kisi bhi phone se website kholne par yahi data dikhega.');
+                    alert('Data successfully saved to Supabase!');
                 }
             }
 
