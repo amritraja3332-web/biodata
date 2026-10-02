@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 min-h-screen flex items-center justify-center font-sans">
+
+    <!-- Login Box -->
+    <div id="loginSection" class="bg-white p-8 rounded-2xl shadow-2xl w-96 max-w-full mx-4">
+        <div class="text-center mb-6">
+            <div class="bg-purple-100 text-purple-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900">Admin Login</h2>
+            <p class="text-xs text-gray-500 mt-1">Enter your credentials to access dashboard</p>
+        </div>
+
+        <div class="space-y-4">
+            <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1">USERNAME</label>
+                <input type="text" id="username" placeholder="Enter username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1">PASSWORD</label>
+                <input type="password" id="password" placeholder="Enter password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 text-sm">
+            </div>
+            <p id="errorMsg" class="text-red-500 text-xs hidden text-center">Invalid Username or Password!</p>
+            <button onclick="handleLogin()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-medium transition text-sm shadow-md">
+                Login
+            </button>
+            <div class="text-center mt-3">
+                <a href="index.html" class="text-xs text-purple-600 hover:underline"><i class="fa-solid fa-arrow-left mr-1"></i> Back to Website</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Panel (Hidden by default) -->
+    <div id="dashboardSection" class="hidden bg-white p-8 rounded-2xl shadow-2xl w-full max-w-4xl mx-4">
+        <div class="flex justify-between items-center border-b pb-4 mb-6">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900">Admin Dashboard</h2>
+                <p class="text-xs text-gray-500">Welcome back, A Raja</p>
+            </div>
+            <div class="flex gap-3">
+                <a href="index.html" target="_blank" class="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-200 transition">
+                    <i class="fa-solid fa-eye mr-1"></i> View Site
+                </a>
+                <button onclick="handleLogout()" class="bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-200 transition">
+                    <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
+            <div class="bg-purple-50 p-5 rounded-xl border border-purple-100">
+                <p class="text-xs text-purple-600 font-semibold uppercase">Total Visitors</p>
+                <h3 class="text-2xl font-bold text-gray-900 mt-1">1,245</h3>
+            </div>
+            <div class="bg-indigo-50 p-5 rounded-xl border border-indigo-100">
+                <p class="text-xs text-indigo-600 font-semibold uppercase">Profile Views</p>
+                <h3 class="text-2xl font-bold text-gray-900 mt-1">3,890</h3>
+            </div>
+            <div class="bg-green-50 p-5 rounded-xl border border-green-100">
+                <p class="text-xs text-green-600 font-semibold uppercase">Inquiries</p>
+                <h3 class="text-2xl font-bold text-gray-900 mt-1">42</h3>
+            </div>
+        </div>
+
+        <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">Quick Control Panel</h3>
+            <p class="text-sm text-gray-600 mb-4">Aap yahan se apni website ka data update ya manage kar sakte hain.</p>
+            <button onclick="alert('Profile Updated Successfully!')" class="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition">
+                Save Changes
+            </button>
+        </div>
+    </div>
+
+    <!-- Login Script -->
+    <script>
+        function handleLogin() {
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (user === 'a raja' && pass === 'a raja') {
+                document.getElementById('loginSection').classList.add('hidden');
+                document.getElementById('dashboardSection').classList.remove('hidden');
+            } else {
+                errorMsg.classList.remove('hidden');
+            }
+        }
+
+        function handleLogout() {
+            document.getElementById('dashboardSection').classList.add('hidden');
+            document.getElementById('loginSection').classList.remove('hidden');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('errorMsg').classList.add('hidden');
+        }
+    </script>
+
+</body>
+</html>
